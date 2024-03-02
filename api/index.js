@@ -1,10 +1,15 @@
 import dotenv from "dotenv"
 import express from "express"
 import mongoose from "mongoose"
+import authRoute from "./routes/auth.js"
+// import usersRoute from "./routes/users.js"
+// import roomsRoute from "./routes/rooms.js"
+// import hotelsRoute from "./routes/hotels.js"
 
 const app = express()
 dotenv.config()
 console.log(process.env.MONGO)
+
 
 
 //to connect the api, this function will be ran 
@@ -24,6 +29,9 @@ mongoose.connection.on("disconnected", ()=> {
 mongoose.connection.on("connected", ()=> {
     console.log("mongoDB connected!!!")
 })
+
+//middlewares
+app.use("/api/auth", authRoute)
 
 
 app.listen(8800, ()=>{
