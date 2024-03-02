@@ -25,6 +25,10 @@ const HotelSchema = new mongoose.Schema({
         type: [String],
         required: true //because we cannot create any hotel without a name
     },
+    title:{
+        type: String,
+        required: true //because we cannot create any hotel without a name
+    },
     description:{
         type: String,
         required: true //because we cannot create any hotel without a name
