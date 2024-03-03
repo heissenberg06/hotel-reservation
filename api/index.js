@@ -38,6 +38,18 @@ app.use(express.json())//by default cannot send any json object to express serve
 app.use("/api/auth", authRoute)
 app.use("/api/hotels", hotelsRoute)
 
+app.use((err, req, res, next)=>{
+    const errorStatus = err.status || 500
+    const errorMessage = err.message || "something went wrong(bunu da ben yazdim)"
+    return res.status(errorStatus).json({
+        //we can send everything about the error here
+        success: false,
+        status: errorStatus,
+        message: errorMessage,
+        stack: err.stack
+    })
+})
+
 
 app.listen(8800, ()=>{
     connect()
