@@ -13,6 +13,6 @@ router.post("/", createHotel)
 router.put("/:id", updateHotel)
 router.delete("/:id", deleteHotel)
 router.get("/:id", getHotel)
-router.get("/", getAll)
+router.get("/", getAll) //getHotels
 
 export default router
