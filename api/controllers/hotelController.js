@@ -42,7 +42,7 @@ export const getHotel = async (req, res, next)=> {
     }
 }
 
-export const getAll = async (req, res, next)=> {
+export const getHotels = async (req, res, next)=> {
     try {
         const hotels = await Hotel.find() //thanks to this line, we can see the updated case on postman
         res.status(200).json(hotels) //if the method above is successful, return updatedHotel

@@ -6,21 +6,4 @@ const router = express.Router();
 router.post("/register", register)
 router.post("/login", login)
 
-
 export default router
-
-
-
-
-
-
-
-
-
-
-
-
-
-// router.get("/", (req, res)=> {
-//     res.send("hello, this is auth endpoint")
-// })

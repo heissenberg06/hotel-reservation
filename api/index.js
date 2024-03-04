@@ -2,7 +2,7 @@ import dotenv from "dotenv"
 import express from "express"
 import mongoose from "mongoose"
 import authRoute from "./routes/auth.js"
-// import usersRoute from "./routes/users.js"
+import usersRoute from "./routes/users.js"
 // import roomsRoute from "./routes/rooms.js"
 import hotelsRoute from "./routes/hotels.js"
 import cookieParser from "cookie-parser";
@@ -35,7 +35,8 @@ mongoose.connection.on("connected", ()=> {
 app.use(cookieParser())
 app.use(express.json())//by default cannot send any json object to express server
 //to prevent this, use that expression
-
+// app.use("api/rooms", roomsRoute)
+app.use("/api/users", usersRoute)
 app.use("/api/auth", authRoute)
 app.use("/api/hotels", hotelsRoute)
 
