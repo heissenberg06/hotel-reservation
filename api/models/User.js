@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema({
     username:{
@@ -19,7 +19,8 @@ const UserSchema = new mongoose.Schema({
         type: Boolean,
         default: false,  
     },
-},   {timestamps: true} //this gives me the times of the operations(login-register)
+},   
+    {timestamps: true} //this gives me the times of the operations(login-register)
 );
 
 export default mongoose.model("User", UserSchema)

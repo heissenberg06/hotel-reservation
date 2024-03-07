@@ -25,7 +25,7 @@ export const getUser = async (req, res, next)=> {
         const user = await User.findById(req.params.id) //thanks to this line, we can see the updated case on postman
         res.status(200).json(user) //if the method above is successful, return updatedHotel
     } catch (error) {
-        next(err) //previous: res.status(500).json(error)
+        next(error) //previous: res.status(500).json(error)
     }
 }
 
