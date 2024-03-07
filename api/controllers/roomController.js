@@ -33,8 +33,16 @@ export const updateRoom = async (req, res, next)=>{
 }
 
 export const deleteRoom = async (req, res, next)=>{
+    const hotelId = req.params.hotelid;
     try {
         await Room.findByIdAndDelete(req.params.id) //thanks to this line, we can see the updated case on postman
+        try{
+            await Hotel.findByIdAndUpdate(hotelId, {
+                $pull: {rooms: req.params.id}
+            });
+        } catch (error) {
+            next(error);
+        }
         res.status(200).json("Room Has Been Deleted") //if the method above is successful, return updatedHotel
     } catch (error) {
         next(error) //previous: res.status(500).json(error)

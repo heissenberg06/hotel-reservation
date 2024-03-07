@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.post("/:hotelid", verifyAdmin, createRoom)
 router.put("/:id", verifyAdmin, updateRoom)
-router.delete("/:id", deleteRoom)
+router.delete("/:id/:hotelid", deleteRoom)
 router.get("/:id", getRoom)
 router.get("/", getRooms) //getHotels
 
