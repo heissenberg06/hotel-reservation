@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Children } from 'react'
 import "./header.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBed, faPerson, faPlane, faCar, faTaxi, faCalendar } from "@fortawesome/free-solid-svg-icons"
@@ -6,16 +6,26 @@ import { DateRange } from 'react-date-range'
 import {useState} from 'react'
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
-
+import {format} from "date-fns"
 
 const Header = () => {
-  const [date, setDate] = useState([
+  const [openDate, setOpenDate] = useState(false)
+  const [date, setDate] = useState([ //it is an array
     {
       startDate: new Date(),
-      endDate: null,
+      endDate: new Date(),
       key: 'selection'
     }
   ]);
+
+  const [openOptions, setOpenOptions] = useState(false)
+  const [options, setOptions] = useState({
+    adult: 1,
+    children: 0,
+    room: 1,
+  })
+
+
 
   return (
     <div className='header'>
@@ -55,18 +65,53 @@ const Header = () => {
           </div>
           <div>
           <FontAwesomeIcon icon={faCalendar} className='headerIcon' />
-          <span className='headerSearchText'>date to date</span>
-          <DateRange
+          <span onClick={() => setOpenDate(!openDate) } className='headerSearchText'>{`${format(date[0].startDate, "dd/MM/yyyy")} 
+          to ${format(date[0].endDate, "dd/MM/yyyy")}`}
+          </span>
+          {openDate && <DateRange
             editableDateInputs={true}
             onChange={item => setDate([item.selection])}
             moveRangeOnFirstSelection={false}
             ranges={date}
             className='date'
-          />
+          />}
           </div>
           <div>
           <FontAwesomeIcon icon={faPerson} className='headerIcon' />
-          <span className='headerSearchText'>2 adults 2 children 1 room</span>
+          <span className='headerSearchText'>{`${options.adult} adult . ${options.children} children . ${options.room} room`}</span>
+            <div className="options">
+              <div className="optionItem">
+                <span className="optionText">
+                  Adult
+                </span>
+                <div className="optionCounter">
+                <button className="optionCounterButton">-</button>
+                <span className="optionCounterNumber">1</span>
+                <button className="optionCounterButton">+</button>
+              </div>
+              </div>
+              <div className="optionItem">
+                <span className="optionText">
+                  Children
+                </span>
+                <div className="optionCounter">
+                <button className="optionCounterButton">-</button>
+                <span className="optionCounterNumber">1</span>
+                <button className="optionCounterButton">+</button>
+              </div>
+              </div>
+              <div className="optionItem">
+                <span className="optionText">
+                  Room
+                </span>
+                <div className="optionCounter">
+                <button className="optionCounterButton">-</button>
+                <span className="optionCounterNumber">1</span>
+                <button className="optionCounterButton">+</button>
+              </div>
+              </div>
+              
+            </div>
           </div>
           <div className='headerSearchItem'>
             <button className="headerButton">Search</button>
