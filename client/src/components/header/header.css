@@ -82,6 +82,7 @@
 .date {
     position: absolute;
     top: 50px;
+    
 }
 
 .options{
@@ -114,4 +115,11 @@
     color: black;
     cursor: pointer;
     background-color: white;
+}
+
+.optionCounterButton:disabled{
+    cursor: not-allowed;
+    color: red;
+    font-weight: bold;
+    
 }
