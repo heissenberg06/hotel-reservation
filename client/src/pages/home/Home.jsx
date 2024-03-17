@@ -13,6 +13,8 @@ const Home = () => {
       <div className="homeContainer">
         <Featured/>
       </div>
+
+      <h1 className="homeTitle">browse by property type</h1>
     </div>
   );
 };
